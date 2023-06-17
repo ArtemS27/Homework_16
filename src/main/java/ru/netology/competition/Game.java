@@ -1,18 +1,18 @@
 package ru.netology.competition;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
-    ArrayList<Player> players = new ArrayList<>();
+    HashMap<String, Player> players = new HashMap<>();
 
-    public void register(Player player) {
-        players.add(player);
+    public void register(Player player){
+        players.put(player.getName(), player);
     }
 
     public Player findByName(String name) {
-        for (Player player : players) {
-            if (player.getName() == name) {
-                return player;
+        for (String key : players.keySet()) {
+            if (key == name) {
+                return players.get(key);
             }
         }
         throw new NotRegisteredException("Player " + name + " is not registered");
