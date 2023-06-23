@@ -10,18 +10,19 @@ public class Game {
     }
 
     public Player findByName(String name) {
-        for (String key : players.keySet()) {
-            if (key == name) {
-                return players.get(key);
-            }
+        Player playerTmp = players.get(name);
+        if(playerTmp != null){
+            return playerTmp;
         }
         throw new NotRegisteredException("Player " + name + " is not registered");
     }
 
     public int round(String playerName1, String playerName2) {
-        if (findByName(playerName1).getStrength() > findByName(playerName2).getStrength()) {
+        int player1Strength = findByName(playerName1).getStrength();
+        int player2Strength = findByName(playerName2).getStrength();
+        if (player1Strength > player2Strength) {
             return 1;
-        } else if (findByName(playerName1).getStrength() < findByName(playerName2).getStrength()) {
+        } else if (player1Strength < player2Strength) {
             return -1;
         } else {
             return 0;
